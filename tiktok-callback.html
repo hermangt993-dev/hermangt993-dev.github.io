@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Connecting – Open World Daily</title>
+<style>body{font-family:system-ui,sans-serif;max-width:640px;margin:60px auto;padding:0 16px;line-height:1.6}</style>
+</head><body>
+<h1>Connecting TikTok…</h1>
+<p id="msg">Sending you back to the Open World Daily tool on this computer.</p>
+<script>
+  // TikTok sends the login code here; pass it on to the local tool (port 8770).
+  var q = new URLSearchParams(location.search);
+  if (q.get("code") && q.get("state")) {
+    location.replace("http://127.0.0.1:8770/?" + new URLSearchParams({code: q.get("code"), state: q.get("state")}));
+  } else {
+    document.getElementById("msg").textContent = "TikTok did not return a login code" + (q.get("error") ? " (" + q.get("error") + ")" : "") + ". Close this tab and try again.";
+  }
+</script>
+</body></html>
